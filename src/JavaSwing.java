@@ -1,18 +1,20 @@
+import org.json.JSONObject;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.Arrays;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 public class JavaSwing {
-    public static String[] shows = {"UNIVERSURI PARALELE", "MARIA TĂNASE. O POVESTE", "PROMETEU'22"};
+    public static JFrame frame = new JFrame("E-Teatru"); // creating instance of JFrame
     public static String selectedListItem;
     public static void launchJavaSwing() {
-        JFrame frame = new JFrame("E-Teatru"); //creating instance of JFrame
-
         // START SHOWS LIST
         DefaultListModel<String> l1 = new DefaultListModel<>();
-        for (String show : shows) { // list items from shows array
-            l1.addElement(show);
+        for(int i=0; i<JSONShows.shows.length(); i++){ // list items from shows array
+            JSONObject show_obj = JSONShows.shows.getJSONObject(i);
+            String showTitle = show_obj.getString("title");
+            l1.addElement(showTitle);
         }
         JList<String> showsList = new JList<>(l1);
         showsList.setBounds(100,100, 200,200);
@@ -35,14 +37,42 @@ public class JavaSwing {
             }
         });
 
-        JButton button = new JButton("Next");
-        button.setBounds(150, 400, 100, 40); // x-axis, y-axis, width, height
-        frame.add(button);
+        JButton nextBtn = new JButton("Next");
+        nextBtn.setBounds(150, 400, 100, 40); // x-axis, y-axis, width, height
+        frame.add(nextBtn);
+        nextBtn.addActionListener(new ActionListener() {  // Clear Current frame on 'Next' button click
+            public void actionPerformed(ActionEvent ae) {
+                if (selectedListItem == null) {
+                    createPleaseSelectText();
+                    return;
+                }
+                System.out.println("passed");
+                clearFrame();
+                secondFrameItems();
+            }
+        });
         // END --- Create Select Show Button & Show Selected ---
 
         // Frame Settings
         frame.setSize(400, 500); // 400 width and 500 height
         frame.setLayout(null); // using no layout managers
         frame.setVisible(true); // making the frame visible
+    }
+
+    public static void secondFrameItems() {
+        JLabel currentShow = new JLabel(selectedListItem);
+        currentShow.setBounds(50, 50, 200, 10);
+        frame.add(currentShow);
+    }
+
+    public static void clearFrame() {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+    }
+
+    public static void createPleaseSelectText() {
+        JLabel nothingSelected = new JLabel("To continue, please select a show.");
+        nothingSelected.setBounds(5, 300, 300, 30);
+        frame.add(nothingSelected);
     }
 }
