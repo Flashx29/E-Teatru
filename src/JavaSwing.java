@@ -1,13 +1,15 @@
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.Arrays;
+import java.util.Objects;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 public class JavaSwing {
     public static JFrame frame = new JFrame("E-Teatru"); // creating instance of JFrame
-    public static String selectedListItem;
+    public static String selectedShow;
     public static void launchJavaSwing() {
         // START SHOWS LIST
         DefaultListModel<String> l1 = new DefaultListModel<>();
@@ -32,8 +34,8 @@ public class JavaSwing {
                 if (evt.getValueIsAdjusting())
                     return;
                 // System.out.println(showsList.getSelectedValue());
-                selectedListItem = showsList.getSelectedValue();
-                selectedShowLabel.setText("Selected Show: " + selectedListItem);
+                selectedShow = showsList.getSelectedValue();
+                selectedShowLabel.setText("Selected Show: " + selectedShow);
             }
         });
 
@@ -42,7 +44,7 @@ public class JavaSwing {
         frame.add(nextBtn);
         nextBtn.addActionListener(new ActionListener() {  // Clear Current frame on 'Next' button click
             public void actionPerformed(ActionEvent ae) {
-                if (selectedListItem == null) {
+                if (selectedShow == null) {
                     createPleaseSelectText();
                     return;
                 }
@@ -60,9 +62,28 @@ public class JavaSwing {
     }
 
     public static void secondFrameItems() {
-        JLabel currentShow = new JLabel(selectedListItem);
-        currentShow.setBounds(50, 50, 200, 10);
+        JLabel currentShow = new JLabel("Alege Teatrul pentru opera: " + selectedShow);
+        currentShow.setBounds(50, 50, 350, 20);
         frame.add(currentShow);
+
+        // START SHOWS LIST
+        DefaultListModel<String> showDetailsList = new DefaultListModel<>();
+        for(int i = 0; i < JSONShows.shows.length(); i++){ // list items from shows array
+            JSONObject show_obj = JSONShows.shows.getJSONObject(i);
+            String showTitle = show_obj.getString("title");
+            if (Objects.equals(showTitle, selectedShow)) {
+                JSONObject showPlayingAt = show_obj.getJSONObject("showPlayingAt");
+                System.out.println(showPlayingAt);
+                String placeKeyTitle = showPlayingAt.keys().next();
+                String placeValueData = showPlayingAt.getString(placeKeyTitle);
+                showDetailsList.addElement(placeKeyTitle + ": " + placeValueData);
+            }
+        }
+        JList<String> showsList = new JList<>(showDetailsList);
+        showsList.setBounds(100,100, 200,200);
+        frame.add(showsList);
+        // END SHOWS LIST
+
     }
 
     public static void clearFrame() {
