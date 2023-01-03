@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Objects;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -73,10 +74,12 @@ public class JavaSwing {
             String showTitle = show_obj.getString("title");
             if (Objects.equals(showTitle, selectedShow)) {
                 JSONObject showPlayingAt = show_obj.getJSONObject("showPlayingAt");
-                System.out.println(showPlayingAt);
-                String placeKeyTitle = showPlayingAt.keys().next();
-                String placeValueData = showPlayingAt.getString(placeKeyTitle);
-                showDetailsList.addElement(placeKeyTitle + ": " + placeValueData);
+                Iterator<String> showPlayAtKeys = showPlayingAt.keys();
+                while(showPlayAtKeys.hasNext()) {
+                    String placeKeyTitle = showPlayAtKeys.next();
+                    String placeValueData = showPlayingAt.getString(placeKeyTitle);
+                    showDetailsList.addElement(placeKeyTitle + ": " + placeValueData);
+                }
             }
         }
         JList<String> showsList = new JList<>(showDetailsList);
