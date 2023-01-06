@@ -11,6 +11,7 @@ import javax.swing.event.ListSelectionListener;
 public class JavaSwing {
     public static JFrame frame = new JFrame("E-Teatru"); // creating instance of JFrame
     public static String selectedShow;
+    public static String selectedTheater;
     public static void launchJavaSwing() {
         // START SHOWS LIST
         DefaultListModel<String> l1 = new DefaultListModel<>();
@@ -24,37 +25,30 @@ public class JavaSwing {
         frame.add(showsList);
         // END SHOWS LIST
 
-        // Create Select Show Button & Show Selected
-        JLabel selectedShowLabel = new JLabel("Selected Show:");
-        selectedShowLabel.setBounds(75, 350, 300, 30); // x-axis, y-axis, width, height
-        frame.add(selectedShowLabel);
-
+        // Create Next Button & Show Selected
+        Utils.createSelectedShowLabel("Spectacol Selectat:");
         // Get Selected Item from List and replace label with it
-        showsList.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent evt) {
-                if (evt.getValueIsAdjusting())
-                    return;
-                // System.out.println(showsList.getSelectedValue());
-                selectedShow = showsList.getSelectedValue();
-                selectedShowLabel.setText("Selected Show: " + selectedShow);
-            }
+        showsList.addListSelectionListener(evt -> {
+            if (evt.getValueIsAdjusting())
+                return;
+            selectedShow = showsList.getSelectedValue();
+            Utils.selectedLabel.setText("Spectacol Selectat: " + selectedShow);
         });
 
         JButton nextBtn = new JButton("Next");
         nextBtn.setBounds(150, 400, 100, 40); // x-axis, y-axis, width, height
         frame.add(nextBtn);
-        nextBtn.addActionListener(new ActionListener() {  // Clear Current frame on 'Next' button click
-            public void actionPerformed(ActionEvent ae) {
-                if (selectedShow == null) {
-                    Utils.createPleaseSelectText();
-                    return;
-                }
-                System.out.println("passed");
-                Utils.clearFrame();
-                SecondFrame.init();
+        // Clear Current frame on 'Next' button click
+        nextBtn.addActionListener(ae -> {
+            if (selectedShow == null) {
+                Utils.selectedLabel.setText("Selecteaza un spectacol mai intai!");
+                return;
             }
+            System.out.println("passed");
+            Utils.clearFrame();
+            SecondFrame.init();
         });
-        // END --- Create Select Show Button & Show Selected ---
+        // END --- Create Next Button & Show Selected ---
 
         // Frame Settings
         frame.setSize(400, 500); // 400 width and 500 height

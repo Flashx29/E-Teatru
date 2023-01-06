@@ -1,13 +1,17 @@
 import org.json.JSONObject;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.Objects;
 
 public class SecondFrame extends JavaSwing {
     public static void init() {
         JLabel currentShow = new JLabel("Alege Teatrul pentru opera: " + selectedShow);
-        currentShow.setBounds(50, 50, 350, 20);
+        currentShow.setBounds(40, 50, 350, 20);
         frame.add(currentShow);
 
         // START SHOWS LIST
@@ -29,5 +33,23 @@ public class SecondFrame extends JavaSwing {
         showsList.setBounds(100,100, 200,200);
         frame.add(showsList);
         // END SHOWS LIST
+
+        // Get Selected Item from List and Replace Label with it
+        Utils.createSelectedShowLabel("Teatru Selectat");
+        showsList.addListSelectionListener(evt -> {
+            if (evt.getValueIsAdjusting())
+                return;
+            selectedTheater = showsList.getSelectedValue();
+            Utils.selectedLabel.setText("Teatru Selectat: " + selectedTheater);
+        });
+
+        // Seat Reservation
+        JLabel seatsLabel = new JLabel("Locuri:");
+        seatsLabel.setBounds(75, 385, 50, 30);
+        frame.add(seatsLabel);
+        JTextField seats = new JTextField();
+        seats.setBounds(125, 385, 50, 30);
+        frame.add(seats);
+        // Create Event Listener for Seats Field, get number of seats for the user
     }
 }
