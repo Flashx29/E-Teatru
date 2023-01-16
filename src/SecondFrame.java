@@ -51,5 +51,17 @@ public class SecondFrame extends JavaSwing {
         seats.setBounds(125, 385, 50, 30);
         frame.add(seats);
         // Create Event Listener for Seats Field, get number of seats for the user
+        JButton nextBtn = new JButton("Next");
+        nextBtn.setBounds(150, 420, 100, 40); // x-axis, y-axis, width, height
+        frame.add(nextBtn);
+        nextBtn.addActionListener(ae -> {
+            if (seats.getText().length() == 0) {
+                return;
+            }
+            selectedSeatsNumber = seats.getText();
+            System.out.println("passed 2");
+            Utils.clearFrame();
+            ThirdFrame.init();
+        });
     }
 }

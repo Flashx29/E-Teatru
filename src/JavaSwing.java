@@ -2,6 +2,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -12,6 +13,7 @@ public class JavaSwing {
     public static JFrame frame = new JFrame("E-Teatru"); // creating instance of JFrame
     public static String selectedShow;
     public static String selectedTheater;
+    public static String selectedSeatsNumber;
     public static void launchJavaSwing() {
         // START SHOWS LIST
         DefaultListModel<String> l1 = new DefaultListModel<>();
@@ -32,6 +34,7 @@ public class JavaSwing {
             if (evt.getValueIsAdjusting())
                 return;
             selectedShow = showsList.getSelectedValue();
+            Utils.selectedLabel.setForeground(Color.BLACK);
             Utils.selectedLabel.setText("Spectacol Selectat: " + selectedShow);
         });
 
@@ -42,6 +45,7 @@ public class JavaSwing {
         nextBtn.addActionListener(ae -> {
             if (selectedShow == null) {
                 Utils.selectedLabel.setText("Selecteaza un spectacol mai intai!");
+                Utils.selectedLabel.setForeground(Color.RED);
                 return;
             }
             System.out.println("passed");
