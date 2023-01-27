@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 public class TicketFrame extends Print {
@@ -39,7 +41,19 @@ public class TicketFrame extends Print {
             // Reset to First Screen
             System.out.println("Finished.");
             Utils.clearFrame();
-            JavaSwing.launchJavaSwing();
+
+            if (userReset != 0) {
+                returnUserRest();
+            } else {
+                loadingMessage();
+            }
+            // Timeout in Java Swing to show User Rest on Interface
+            Timer timer = new Timer(2500, arg0 -> {
+                Utils.clearFrame();
+                JavaSwing.launchJavaSwing();
+            });
+            timer.setRepeats(false); // Only execute once
+            timer.start();
         });
 
 
@@ -49,5 +63,19 @@ public class TicketFrame extends Print {
         printBtn.addActionListener(ae -> {
             print();
         });
+    }
+
+    public static void returnUserRest() {
+        JLabel rest = new JLabel("Se returneaza restul in valoare de " + userReset);
+        rest.setFont(new Font("Serif", Font.PLAIN, 20));
+        rest.setBounds(50, 200, 350, 40);
+        frame.add(rest);
+    }
+
+    public static void loadingMessage() {
+        JLabel loadingMessage = new JLabel("Alegeti spectacolul la care vreti sa mergeti");
+        loadingMessage.setFont(new Font("Serif", Font.PLAIN, 18));
+        loadingMessage.setBounds(50, 200, 350, 40);
+        frame.add(loadingMessage);
     }
 }
