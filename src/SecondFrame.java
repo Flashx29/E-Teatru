@@ -3,8 +3,10 @@ import org.json.JSONObject;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -40,6 +42,7 @@ public class SecondFrame extends JavaSwing {
             if (evt.getValueIsAdjusting())
                 return;
             selectedTheater = showsList.getSelectedValue();
+            Utils.selectedLabel.setForeground(Color.BLACK);
             Utils.selectedLabel.setText("Teatru Selectat: " + selectedTheater);
         });
 
@@ -47,18 +50,33 @@ public class SecondFrame extends JavaSwing {
         JLabel seatsLabel = new JLabel("Locuri:");
         seatsLabel.setBounds(75, 385, 50, 30);
         frame.add(seatsLabel);
-        JTextField seats = new JTextField();
-        seats.setBounds(125, 385, 50, 30);
-        frame.add(seats);
+
+        // Make seatsInput accepts only integers
+        NumberFormat format = NumberFormat.getIntegerInstance();
+        JFormattedTextField seatsInput = new JFormattedTextField(format);
+        seatsInput.setBounds(125, 385, 50, 30);
+        frame.add(seatsInput);
+
         // Create Event Listener for Seats Field, get number of seats for the user
         JButton nextBtn = new JButton("Next");
         nextBtn.setBounds(150, 420, 100, 40); // x-axis, y-axis, width, height
         frame.add(nextBtn);
         nextBtn.addActionListener(ae -> {
-            if (seats.getText().length() == 0) {
+            boolean checkSeatsInput = seatsInput.getText().isEmpty() || Integer.parseInt(seatsInput.getText()) == 0;
+
+            if (checkSeatsInput || selectedTheater == null) {
+                if (checkSeatsInput) {
+                    seatsInput.setText("");
+                    seatsLabel.setForeground(Color.RED);
+                }
+
+                if (selectedTheater == null) {
+                    Utils.selectedLabel.setText("Selecteaza un teatru mai intai!");
+                    Utils.selectedLabel.setForeground(Color.RED);
+                }
                 return;
             }
-            selectedSeatsNumber = seats.getText();
+            selectedSeatsNumber = seatsInput.getText();
             System.out.println("passed 2");
             Utils.clearFrame();
             ThirdFrame.init();
