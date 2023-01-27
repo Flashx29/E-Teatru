@@ -21,11 +21,16 @@ public class ThirdFrame extends JavaSwing {
                 boolean add = !currentSeats.contains(seat);
 
                 // If number of selected seats is great than desired seats number return null
-                if (currentSeats.size() == Integer.parseInt(selectedSeatsNumber)) {
-                    btn.setOpaque(false);
+                if (currentSeats.size() == Integer.parseInt(selectedSeatsNumber) - 1) {
+                    // add last selected item to array and to user as green
+                    currentSeats.add(seat);
+                    btn.setOpaque(true);
+                    btn.setBackground(Color.GREEN);
+
                     // set user seats and transform integer array into a string
                     selectedUserSeats = currentSeats.stream().map(Object::toString).collect(Collectors.joining(", "));
                     createPaymentPanel();
+
                     return;
                 }
 
