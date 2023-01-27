@@ -4,20 +4,23 @@
     "showPlayingAt": {
       "Constanta": "15:00 / 22 DEC",
       "Eforie Nord": "17:45 / 23 DEC"
-    }
+    },
+    "ticket": "50"
   },
   {
     "title": "MARIA TĂNASE. O POVESTE",
     "showPlayingAt": {
       "Bucuresti": "20:00 / 30 DEC",
       "Bucuresti Nord": "18:50 / 28 DEC"
-    }
+    },
+    "ticket": "40"
   },
   {
     "title": "PROMETEU'22",
     "showPlayingAt": {
       "Timisoara Teatru 1": "17:00 / 9 DEC",
       "Timisoara Teatru 2": "18:00 / 12 DEC"
-    }
+    },
+    "ticket": "70"
   }
 ]

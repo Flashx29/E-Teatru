@@ -14,6 +14,12 @@ public class JavaSwing {
     public static String selectedShow;
     public static String selectedTheater;
     public static String selectedSeatsNumber;
+    public static String selectedUserSeats;
+    public static String userName;
+    public static String userPhone;
+    public static Integer userMoney;
+    public static Integer userReset;
+
     public static void launchJavaSwing() {
         // START SHOWS LIST
         DefaultListModel<String> l1 = new DefaultListModel<>();
