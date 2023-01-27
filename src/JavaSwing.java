@@ -17,7 +17,7 @@ public class JavaSwing {
     public static String selectedUserSeats;
     public static String userName;
     public static String userPhone;
-    public static Integer userMoney;
+    public static Integer userMoney = 0;
     public static Integer userReset;
 
     public static void launchJavaSwing() {

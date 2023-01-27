@@ -36,6 +36,11 @@ public class SecondFrame extends JavaSwing {
         frame.add(showsList);
         // END SHOWS LIST
 
+        // Max Seats Label
+        JLabel informMaxSeats = new JLabel("Locuri in sala: 20");
+        informMaxSeats.setBounds(75, 315, 300, 30);
+        frame.add(informMaxSeats);
+
         // Get Selected Item from List and Replace Label with it
         Utils.createSelectedShowLabel("Teatru Selectat");
         showsList.addListSelectionListener(evt -> {
@@ -62,12 +67,20 @@ public class SecondFrame extends JavaSwing {
         nextBtn.setBounds(150, 420, 100, 40); // x-axis, y-axis, width, height
         frame.add(nextBtn);
         nextBtn.addActionListener(ae -> {
-            boolean checkSeatsInput = seatsInput.getText().isEmpty() || Integer.parseInt(seatsInput.getText()) == 0;
+            int seatsInputAsInteger = 0;
+            if (!seatsInput.getText().isEmpty()) {
+                seatsInputAsInteger = Integer.parseInt(seatsInput.getText());
+            }
+            boolean checkSeatsInput = seatsInput.getText().isEmpty() || seatsInputAsInteger == 0 || seatsInputAsInteger > 20;
 
             if (checkSeatsInput || selectedTheater == null) {
                 if (checkSeatsInput) {
                     seatsInput.setText("");
                     seatsLabel.setForeground(Color.RED);
+
+                    if (seatsInputAsInteger > 20) {
+                        informMaxSeats.setForeground(Color.RED);
+                    }
                 }
 
                 if (selectedTheater == null) {

@@ -106,18 +106,21 @@ public class ThirdFrame extends JavaSwing {
         if (result == JOptionPane.OK_OPTION) {
             userName = name.getText();
             userPhone = phoneNumber.getText();
-            userMoney = Integer.parseInt(moneyInput.getText());
+
+            if (!moneyInput.getText().isEmpty()) {
+                userMoney = Integer.parseInt(moneyInput.getText());
+            }
             checkUserPayment(userMoney, finalSeatsPrice);
         }
     }
 
     public static void checkUserPayment(int userMoney, int finalSeatsPrice) {   // Check seats price with user input money
-        userReset = userMoney - finalSeatsPrice;
-        if (userMoney < finalSeatsPrice) {
+        if (userMoney < finalSeatsPrice || userMoney == 0) {
             System.out.println("din nou prea putin");
             paymentNotFulfilled(finalSeatsPrice);
             return;
         }
+        userReset = userMoney - finalSeatsPrice;
         currentSeats.clear(); // clear currentSeats on payment success
         System.out.println("passed 3, init ticket frame");
         Utils.clearFrame();
@@ -149,7 +152,9 @@ public class ThirdFrame extends JavaSwing {
         }
 
         if (paymentResult == JOptionPane.OK_OPTION) {
-            userMoney = Integer.parseInt(moneyInput.getText());
+            if (!moneyInput.getText().isEmpty()) {
+                userMoney = Integer.parseInt(moneyInput.getText());
+            }
             checkUserPayment(userMoney, finalSeatsPrice);
         }
     }
