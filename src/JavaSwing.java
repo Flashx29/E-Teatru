@@ -63,6 +63,7 @@ public class JavaSwing {
         // Frame Settings
         frame.setSize(400, 500); // 400 width and 500 height
         frame.setLayout(null); // using no layout managers
+        frame.setLocationRelativeTo(null); // center JFRAME on screen/monitor center
         frame.setVisible(true); // making the frame visible
     }
 }
