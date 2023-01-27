@@ -30,7 +30,6 @@ public class ThirdFrame extends JavaSwing {
                     // set user seats and transform integer array into a string
                     selectedUserSeats = currentSeats.stream().map(Object::toString).collect(Collectors.joining(", "));
                     createPaymentPanel();
-
                     return;
                 }
 
@@ -119,6 +118,7 @@ public class ThirdFrame extends JavaSwing {
             paymentNotFulfilled(finalSeatsPrice);
             return;
         }
+        currentSeats.clear(); // clear currentSeats on payment success
         System.out.println("passed 3, init ticket frame");
         Utils.clearFrame();
         TicketFrame.init();

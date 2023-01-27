@@ -25,7 +25,7 @@ public class SecondFrame extends JavaSwing {
                 while(showPlayAtKeys.hasNext()) {
                     String placeKeyTitle = showPlayAtKeys.next();
                     String placeValueData = showPlayingAt.getString(placeKeyTitle);
-                    showDetailsList.addElement(placeKeyTitle + ": " + placeValueData);
+                    showDetailsList.addElement(placeKeyTitle + " - " + placeValueData);
                 }
             }
         }
