@@ -20,20 +20,7 @@ public class ThirdFrame extends JavaSwing {
                 // check if current seats array includes selected seat
                 boolean add = !currentSeats.contains(seat);
 
-                // If number of selected seats is great than desired seats number return null
-                if (currentSeats.size() == Integer.parseInt(selectedSeatsNumber) - 1) {
-                    // add last selected item to array and to user as green
-                    currentSeats.add(seat);
-                    btn.setOpaque(true);
-                    btn.setBackground(Color.GREEN);
-
-                    // set user seats and transform integer array into a string
-                    selectedUserSeats = currentSeats.stream().map(Object::toString).collect(Collectors.joining(", "));
-                    createPaymentPanel();
-                    return;
-                }
-
-                // check if an element is in the ArrayList
+                // check if an element should be added or removed from the ArrayList
                 if (add) {
                     currentSeats.add(seat);
                     btn.setOpaque(true);
@@ -41,6 +28,15 @@ public class ThirdFrame extends JavaSwing {
                 } else {
                     currentSeats.remove(Integer.valueOf(seat));
                     btn.setBackground(Color.WHITE);
+                }
+
+
+                // If number of selected seats is equal to desired seats number create payment & return null
+                if (currentSeats.size() == Integer.parseInt(selectedSeatsNumber)) {
+                    // set user seats and transform integer array into a string
+                    selectedUserSeats = currentSeats.stream().map(Object::toString).collect(Collectors.joining(", "));
+                    createPaymentPanel();
+                    return;
                 }
              });
         }
