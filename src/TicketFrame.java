@@ -13,6 +13,10 @@ public class TicketFrame extends Print {
         showDate = selectedTheater.split("-")[1];
         showTheater = selectedTheater.split("-")[0];
 
+        // Save this User
+        ClientDetails.addClient(userName, userPhone, selectedShow, showDate, showTheater, selectedUserSeats);
+        ClientDetails.showClientList();
+
         JLabel title = new JLabel("Bilet");
         title.setFont(new Font("Serif", Font.PLAIN, 24));
         title.setBounds(45, 20, 70, 50);
