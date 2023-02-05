@@ -1,16 +1,12 @@
 import org.json.JSONObject;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class SecondFrame extends JavaSwing {
+public class TheaterFrame extends JavaSwing {
     public static void init() {
         JLabel currentShow = new JLabel("Alege Teatrul pentru opera: " + selectedShow);
         currentShow.setBounds(40, 50, 350, 20);
@@ -92,7 +88,7 @@ public class SecondFrame extends JavaSwing {
             selectedSeatsNumber = seatsInput.getText();
             System.out.println("passed 2");
             Utils.clearFrame();
-            ThirdFrame.init();
+            SeatsFrame.init();
         });
     }
 }

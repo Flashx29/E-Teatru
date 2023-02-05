@@ -1,14 +1,8 @@
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Objects;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+
 public class JavaSwing {
     public static JFrame frame = new JFrame("E-Teatru"); // creating instance of JFrame
     public static String selectedShow;
@@ -56,7 +50,7 @@ public class JavaSwing {
             }
             System.out.println("passed");
             Utils.clearFrame();
-            SecondFrame.init();
+            TheaterFrame.init();
         });
         // END --- Create Next Button & Show Selected ---
 

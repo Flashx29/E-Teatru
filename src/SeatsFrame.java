@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class ThirdFrame extends JavaSwing {
+public class SeatsFrame extends JavaSwing {
     public static ArrayList<Integer> currentSeats = new ArrayList<Integer>();
     public static void init() {
         int seatsAsked = Integer.parseInt(selectedSeatsNumber);
@@ -159,7 +159,7 @@ public class ThirdFrame extends JavaSwing {
         // reset third frame if user cancels
         System.out.println("ThirdFrame reset");
         Utils.clearFrame();
-        ThirdFrame.init();
+        SeatsFrame.init();
         currentSeats.clear();
     }
 }
