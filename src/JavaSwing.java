@@ -12,7 +12,7 @@ public class JavaSwing {
     public static String userName;
     public static String userPhone;
     public static Integer userMoney = 0;
-    public static Integer userReset = 0;
+    public static Integer userRest = 0;
 
     public static void launchJavaSwing() {
         // START SHOWS LIST

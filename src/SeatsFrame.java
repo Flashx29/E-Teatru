@@ -116,12 +116,13 @@ public class SeatsFrame extends JavaSwing {
             paymentNotFulfilled(finalSeatsPrice);
             return;
         }
-        userReset = userMoney - finalSeatsPrice;
+        userRest = userMoney - finalSeatsPrice;
         currentSeats.clear(); // clear currentSeats on payment success
         System.out.println("passed 3, init ticket frame");
         Utils.clearFrame();
         TicketFrame.init();
     }
+
     public static void paymentNotFulfilled(int finalSeatsPrice) {
         JPanel pricePanel = new JPanel();
         pricePanel.setSize(200, 300);

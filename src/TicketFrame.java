@@ -46,7 +46,7 @@ public class TicketFrame extends Print {
             System.out.println("Finished.");
             Utils.clearFrame();
 
-            if (userReset != 0) {
+            if (userRest != 0) {
                 returnUserRest();
             } else {
                 loadingMessage();
@@ -70,7 +70,7 @@ public class TicketFrame extends Print {
     }
 
     public static void returnUserRest() {
-        JLabel rest = new JLabel("Se returneaza restul in valoare de " + userReset);
+        JLabel rest = new JLabel("Se returneaza restul in valoare de " + userRest);
         rest.setFont(new Font("Serif", Font.PLAIN, 20));
         rest.setBounds(50, 200, 350, 40);
         frame.add(rest);
