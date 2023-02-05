@@ -55,6 +55,7 @@ public class TicketFrame extends Print {
             Timer timer = new Timer(2500, arg0 -> {
                 Utils.clearFrame();
                 JavaSwing.launchJavaSwing();
+                Utils.resetToDefault();
             });
             timer.setRepeats(false); // Only execute once
             timer.start();

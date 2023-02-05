@@ -18,4 +18,16 @@ public class Utils extends JavaSwing {
         nothingSelected.setBounds(75, 320, 300, 30);
         frame.add(nothingSelected);
     }
+
+    // Reset all values to default
+    public static void resetToDefault() {
+        selectedShow = null;
+        selectedTheater = null;
+        selectedSeatsNumber = null;
+        selectedUserSeats = null;
+        userName = null;
+        userPhone = null;
+        userMoney = 0;
+        userRest = 0;
+    }
 }

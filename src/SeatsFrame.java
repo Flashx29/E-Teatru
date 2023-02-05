@@ -12,7 +12,7 @@ public class SeatsFrame extends JavaSwing {
         int seatsAsked = Integer.parseInt(selectedSeatsNumber);
         int maxSeats = 20;
 
-        for (int i = 0; i <= maxSeats; i++) {
+        for (int i = 1; i <= maxSeats; i++) {
             JButton btn = new JButton(Integer.toString(i));
             frame.add(btn);
             int seat = i;
